@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Kasir Ringkas - Bite & Dim</title>
 
-<!-- Kode untuk favicon PNG Anda -->
+    <!-- Manifest untuk PWA (Tombol Install) -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Kode untuk favicon PNG Anda -->
     <link rel="icon" type="image/png" href="Favicon.png">
     
     <!-- Ikon untuk iOS/Apple Pintasan -->
@@ -14,6 +17,7 @@
     <!-- Tag Android/Chrome untuk mode web app standar -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Bite & Dim">
+    <meta name="theme-color" content="#f59e0b">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
@@ -191,7 +195,6 @@
                     dataStokCloud = resData.stok;
                     menuDariSheets = resData.menu;
                     
-                    // Simpan dan Tampilkan Omzet Harian Terbaru
                     var omzet = resData.omzetHarian || 0;
                     localStorage.setItem("bdim_omzet_lokal", omzet);
                     document.getElementById("omzet_hari_ini").innerText = "Rp " + omzet.toLocaleString('id-ID');
@@ -337,7 +340,6 @@
         }
 
         function hapusDariKeranjang(index) {
-            clearTimeout();
             keranjang.splice(index, 1);
             renderKeranjang();
         }
@@ -438,7 +440,16 @@
         function kembaliKeKasir() {
             document.getElementById("layout_nota").classList.add("hidden-layout");
             document.getElementById("layout_utama").classList.remove("hidden-layout");
-            muatDataDariCloud(); // Refresh Data & Omzet Harian Otomatis
+            muatDataDariCloud();
+        }
+
+        // --- SKRIP DAFTAR SERVICE WORKER PWA ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('PWA Service Worker Aktif!', reg))
+                    .catch(err => console.error('Gagal daftar Service Worker:', err));
+            });
         }
     </script>
     <style>
