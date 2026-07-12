@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Kasir Ringkas - Bite & Dim</title>
+
+<!-- Kode untuk favicon PNG Anda -->
+    <link rel="icon" type="image/png" href="Favicon.png">
+    
+    <!-- Ikon untuk iOS/Apple Pintasan -->
+    <link class="apple-touch-icon" sizes="180x180" href="Favicon.png">
+
+    <!-- Tag Android/Chrome untuk mode web app standar -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Bite & Dim">
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         /* Menyembunyikan judul halaman bawaan Blogger */
